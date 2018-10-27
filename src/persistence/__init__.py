@@ -5,7 +5,7 @@ Created on Sat Oct 27 00:27:59 2018
 Module persistence includes Librarian
 """
 
-from .librarian import Librarian
+from .library import Librarian
 
 __all__ = [
         'Librarian',
