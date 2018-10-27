@@ -1,6 +1,19 @@
+# data
 /data/
+
+# python cache
 __pycache__/
+
+# jupyter notebooks
 .ipynb_checkpoints/
+
+# pytest
+.pytest_cache/
+
+# coverage
 .coverage
 htmlcov/
 .cache/
+
+# spyder project
+.spyproject/
