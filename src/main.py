@@ -18,8 +18,11 @@ PROJ_ROOT = os.path.abspath(PROJ_ROOT)
 src_dir = os.path.join(PROJ_ROOT, "src")
 sys.path[0] = src_dir
 
-def main(size=None):
-    print("Data size", size)
+from persistence import Librarian
+
+def main():
+    librarian = Librarian()
+    print(librarian.add1(0))
 
 if __name__ == "__main__":
     main()

@@ -7,6 +7,7 @@ Created on Fri Dec 15 09:52:10 2017
 
 import os
 import sys
+import numpy as np
 
 # Get the path of the root folder of the project,
 # this a reference for all other paths.
@@ -22,19 +23,11 @@ from main import main
 
 def test_main():
     # case
-    params = {"size": 10}
     # test
-    main(**params)
+    main()
     # assertions
     assert np.all((0,0) == (0,0))
-    assert np.allclose((.1,.1) == (.1,.1))
+    assert np.allclose((.1,.1), (.1,.1))
 
-def test_():
-    # case
-    # test
-    # assertions
-    assert np.all((0,0) == (0,0))
-    assert np.allclose((.1,.1) == (.1,.1))
-	
 if __name__ == "__main__":
     test_main()
