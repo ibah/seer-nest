@@ -5,8 +5,9 @@ Created on Sat Oct 27 00:27:59 2018
 Module persistence includes Librarian
 """
 
-from .library import Librarian
+from .library import Catalog, Librarian
 
 __all__ = [
+        'Catalog',
         'Librarian',
 ]

@@ -24,7 +24,7 @@ sys.path[0] = src_dir
 #from sklearn.utils.testing import assert_array_almost_equal
 #from sklearn.utils.testing import assert_array_equal
 #from sklearn.utils.testing import assert_array_less
-from sklearn.utils.testing import assert_equal
+#from sklearn.utils.testing import assert_equal
 #from sklearn.utils.testing import assert_greater_equal
 #from sklearn.utils.testing import assert_less_equal
 #from sklearn.utils.testing import assert_raises
@@ -37,7 +37,7 @@ from sklearn.utils.testing import assert_equal
 #from sklearn.utils.testing import assert_allclose_dense_sparse
 #from sklearn.utils.testing import skip_if_32bit
 
-from persistence import Librarian
+from persistence import Catalog, Librarian
 
 # Example data
 from sklearn import datasets
@@ -55,12 +55,36 @@ X_1col = X_2d[:, 0].reshape(n_samples, 1)
 X_list_1row = X_1row.tolist()
 X_list_1col = X_1col.tolist()
 
-def test_Librarian():
+def test_Catalog_1():
     # case
-    librarian = Librarian()
+    catalog = Catalog('X:/library', 'X:/library/catalog', memory_cache=True)
+    x = np.array([1,2,3])
     # test
-    x = librarian.add1(3)
+    catalog.add_object(123, 'prediction', x)
     # assertions
-    assert_equal(x, 4)
-    assert np.all((0,0) == (0,0))
-    assert np.allclose((.1,.1), (.1,.1))
+    assert np.all(catalog.get_object(123, 'prediction') == x)
+
+def test_Catalog_2():
+    # case
+    catalog = Catalog('X:/library', 'X:/library/catalog', memory_cache=True)
+    x = np.array([1,2,3])
+    # test
+    catalog.add_object(123, 'prediction', x)
+    # assertions
+    assert catalog.get_object(321, 'prediction') is None
+
+
+def test_Librarian_1():
+    # case
+    catalog = Catalog('X:/library', 'X:/library/catalog', memory_cache=True)
+    librarian = Librarian(catalog, 'md5')
+    # test
+    description = 'model: ARIMA'
+    # assertions
+    assert librarian.get_hash(description) == b'\xe5\xf8+5-I\x8f\xb7\x1f\xd4\xff\xf8t\nbz'
+#    assert np.all((0,0) == (0,0))
+#    assert np.allclose((.1,.1), (.1,.1))
+
+
+if __name__ == "__main__":
+    test_Librarian_1()

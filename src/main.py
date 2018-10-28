@@ -18,11 +18,10 @@ PROJ_ROOT = os.path.abspath(PROJ_ROOT)
 src_dir = os.path.join(PROJ_ROOT, "src")
 sys.path[0] = src_dir
 
-from persistence import Librarian
+from persistence import Catalog, Librarian
 
 def main():
-    librarian = Librarian()
-    print(librarian.add1(0))
+    print("Hello World!")
 
 if __name__ == "__main__":
     main()
