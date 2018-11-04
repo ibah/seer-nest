@@ -1,3 +1,6 @@
+# YAML files
+*.yaml
+
 # data
 /data/
 
